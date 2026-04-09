@@ -1,44 +1,32 @@
 *.class
-
-
-/node_modules
-
-# SSH Keys
-
-*.pem
-*.ppk
-
-# Mobile Tools for Java (J2ME)
-.mtj.tmp/
-
-# Package Files #
+**/target/
+**/bin/
 *.jar
 *.war
 *.ear
 
-# Merge Files
-*.bak
+**/.idea/
+**/*.iml
+**/.gradle/
 
-#Gradle temporary files
-target/
-
-#Eclipse files
 **/.project
 **/.classpath
 **/.settings/
-/bin/
-blog/bin/
-**/.tern-project
 **/.factorypath
+**/.tern-project
 
-#IntelliJ files
-**/*.iml
-**/.idea
-**/.gradle
+HELP.md
+mvnw
+mvnw.cmd
+**/.mvn/
 
-#Other Files
+.metadata/
+*.bak
 *.ini
-
-# virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
+/node_modules/
 hs_err_pid*
-/.metadata/
+
+*.pem
+*.ppk
+
+.mtj.tmp/
