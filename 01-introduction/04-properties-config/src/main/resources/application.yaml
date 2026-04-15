@@ -1,0 +1,6 @@
+spring:
+  application:
+    name: properties
+app:
+  user-name: "Rogerio"
+  welcome-msg: "Stupid welcome message"
