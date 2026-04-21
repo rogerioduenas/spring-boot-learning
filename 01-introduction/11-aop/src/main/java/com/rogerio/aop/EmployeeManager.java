@@ -5,7 +5,8 @@ import org.springframework.stereotype.Component;
 @Component
 public class EmployeeManager {
 
-  public void getEmployeeById(Integer employeeId) {
+  public Employee getEmployeeById(Integer employeeId) {
     System.out.println("Method getEmployeeById() called");
+    return new Employee();
   }
 }
