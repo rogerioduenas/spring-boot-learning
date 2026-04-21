@@ -1,10 +1,8 @@
 package com.rogerio.aop;
 
 import org.aspectj.lang.JoinPoint;
-import org.aspectj.lang.annotation.After;
-import org.aspectj.lang.annotation.AfterReturning;
-import org.aspectj.lang.annotation.Aspect;
-import org.aspectj.lang.annotation.Before;
+import org.aspectj.lang.ProceedingJoinPoint;
+import org.aspectj.lang.annotation.*;
 import org.springframework.stereotype.Component;
 
 @Aspect
@@ -24,5 +22,20 @@ public class EmployeeCRUDAspect {
   @After("execution(* EmployeeManager.getEmployeeById(..))")
   public void logAfterV1(JoinPoint joinPoint) {
     System.out.println("EmployeeCRUDAspect.logAfterV1() : The method " + joinPoint.getSignature().getName() + " has been finished");
+  }
+
+  @Around("execution(* EmployeeManager.getEmployeeById(..))")
+  public Object logAroundV1(ProceedingJoinPoint joinPoint) throws Throwable {
+    System.out.println("EmployeeCRUDAspect.logAroundV1() [BEFORE] : " + joinPoint.getSignature().getName());
+
+    try {
+      Object result = joinPoint.proceed();
+      System.out.println("EmployeeCRUDAspect.logAroundV1() [AFTER] : Returned -  " + result);
+      return result;
+
+    } catch (Throwable e) {
+      System.out.println("EmployeeCRUDAspect.logAroundV1() [ERROR] : " + e.getMessage());
+      throw e;
+    }
   }
 }
