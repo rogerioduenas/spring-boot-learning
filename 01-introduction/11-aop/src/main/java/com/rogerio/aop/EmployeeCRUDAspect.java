@@ -1,6 +1,7 @@
 package com.rogerio.aop;
 
 import org.aspectj.lang.JoinPoint;
+import org.aspectj.lang.annotation.After;
 import org.aspectj.lang.annotation.AfterReturning;
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Before;
@@ -18,5 +19,10 @@ public class EmployeeCRUDAspect {
   @AfterReturning(pointcut = "execution(* EmployeeManager.getEmployeeById(..))", returning = "result")
   public void logAfterReturningV1(JoinPoint joinPoint, Object result) {
     System.out.println("EmployeeCRUDAspect.logAfterReturningV1() : " + result);
+  }
+
+  @After("execution(* EmployeeManager.getEmployeeById(..))")
+  public void logAfterV1(JoinPoint joinPoint) {
+    System.out.println("EmployeeCRUDAspect.logAfterV1() : The method " + joinPoint.getSignature().getName() + " has been finished");
   }
 }
