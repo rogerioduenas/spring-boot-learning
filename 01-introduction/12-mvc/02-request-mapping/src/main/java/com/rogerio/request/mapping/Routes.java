@@ -63,6 +63,16 @@ public class Routes {
     return "Missing Parameters";
   }
 
+  // Multiple rotes with @PathVariable not required
+  @GetMapping(value = { "/ex3", "/ex3/{id}" })
+  public String getIdWithRequiredFalse(@PathVariable(required = false) String id) {
+    if (id != null) {
+      return "ID: " + id;
+    } else {
+      return "ID missing";
+    }
+  }
+
   // Regex
   @GetMapping(value = "/ex/regex/{numericId:[\\d]+}")
   public String getSimplePathWithRegex(@PathVariable long numericId) {
