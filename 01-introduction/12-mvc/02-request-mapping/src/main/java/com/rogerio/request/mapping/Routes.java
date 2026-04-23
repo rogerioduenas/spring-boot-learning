@@ -2,6 +2,8 @@ package com.rogerio.request.mapping;
 
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Map;
+
 import static org.springframework.web.bind.annotation.RequestMethod.GET;
 
 @RestController
@@ -47,6 +49,18 @@ public class Routes {
   @GetMapping(value = "/ex/{var1}/{var2}")
   public String getSimplePathWithMultipleVariables(@PathVariable("var1") Long var1, @PathVariable Long var2) {
     return String.format("var1: %d, var2: %d", var1, var2);
+  }
+
+  // Multiple @PathVariable using Map<?,?>
+  @GetMapping("/ex2/{id}/{name}")
+  public String getEmployeesByIdAndNameWithMap(@PathVariable Map<String, String> pathVarsMap) {
+    String id = pathVarsMap.get("id");
+    String name = pathVarsMap.get("name");
+
+    if (id != null && name != null) {
+      return "ID: " + id + ", name: " + name;
+    }
+    return "Missing Parameters";
   }
 
   // Regex
