@@ -116,8 +116,13 @@ public class Routes {
   // multiple parameters without defining their names using MAP
   @PostMapping("/ex/all")
   // http://localhost:8080/ex/all?id=1name=mike...
-  @ResponseBody
   public String updateFoos(@RequestParam Map<String,String> allParams) {
     return "Parameters are " + allParams.entrySet();
+  }
+
+  // a parameter with multiple values
+  @GetMapping("/ex/all2")
+  public String getFoos(@RequestParam List<String> id) {
+    return "IDs are " + id;
   }
 }
