@@ -2,6 +2,7 @@ package com.rogerio.request.mapping;
 
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
 import java.util.Map;
 
 import static org.springframework.web.bind.annotation.RequestMethod.GET;
@@ -104,6 +105,13 @@ public class Routes {
       @RequestParam long id,
       @RequestParam(required = false) String second) {
     return "GET example: " + id + " Second: " + second;
+  }
+
+  // Default value
+  @GetMapping("/ex/rp5")
+  @ResponseBody
+  public String getPathWithRequestParamDefaultValue(@RequestParam(defaultValue = "test") String id) {
+    return "ID: " + id;
   }
 
 }
