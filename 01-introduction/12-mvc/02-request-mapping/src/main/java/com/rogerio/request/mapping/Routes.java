@@ -109,9 +109,15 @@ public class Routes {
 
   // Default value
   @GetMapping("/ex/rp5")
-  @ResponseBody
   public String getPathWithRequestParamDefaultValue(@RequestParam(defaultValue = "test") String id) {
     return "ID: " + id;
   }
 
+  // multiple parameters without defining their names using MAP
+  @PostMapping("/ex/all")
+  // http://localhost:8080/ex/all?id=1name=mike...
+  @ResponseBody
+  public String updateFoos(@RequestParam Map<String,String> allParams) {
+    return "Parameters are " + allParams.entrySet();
+  }
 }
