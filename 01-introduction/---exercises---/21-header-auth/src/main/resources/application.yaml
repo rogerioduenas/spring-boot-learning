@@ -1,0 +1,7 @@
+spring:
+  application:
+    name: header-auth
+
+app:
+  security:
+    token: secret123
