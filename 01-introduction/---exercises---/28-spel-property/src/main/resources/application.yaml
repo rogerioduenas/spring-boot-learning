@@ -1,0 +1,6 @@
+spring:
+  application:
+    name: spel-property
+app:
+  admin-emails: "admin@admin.com,director@director.com,devops@devops.com"
+
