@@ -1,0 +1,28 @@
+version: '3.8'
+
+services:
+  db-container:
+    image: postgres:16-alpine
+    container_name: db-container
+    environment:
+      POSTGRES_DB: ${DB_NAME}
+      POSTGRES_USER: ${DB_USER}
+      POSTGRES_PASSWORD: ${DB_PASSWORD}
+    ports:
+      - "5432:5432"
+    volumes:
+      - pg-data:/var/lib/postgresql/data
+
+  api-spring:
+    build: .
+    container_name: api-spring
+    ports:
+      - "8080:8080"
+    depends_on:
+      - db-container
+    environment:
+      DB_NAME: ${DB_NAME}
+      DB_USER: ${DB_USER}
+      DB_PASSWORD: ${DB_PASSWORD}
+volumes:
+  pg-data:
