@@ -1,5 +1,7 @@
 package com.rogerio.onetoone_strategies;
 
+import com.rogerio.onetoone_strategies.SharedPK.Product;
+import com.rogerio.onetoone_strategies.SharedPK.ProductDetail;
 import com.rogerio.onetoone_strategies.foreignKey.Address;
 import com.rogerio.onetoone_strategies.foreignKey.User;
 import jakarta.persistence.EntityManager;
@@ -19,11 +21,26 @@ public class FlowTest implements CommandLineRunner {
   @Override
   @Transactional
   public void run(String... args) throws Exception {
-  Address address = new Address();
-  entityManager.persist(address);
 
-  User user = new User();
-  user.setAddress(address);
-  entityManager.persist(user);
+    //  Foreign Key
+    Address address = new Address();
+    entityManager.persist(address);
+
+    User user = new User();
+    user.setAddress(address);
+    entityManager.persist(user);
+
+    //  Shared Primary Key
+    Product product = new Product();
+    product.setName("Notebook");
+
+    ProductDetail detail = new ProductDetail();
+    detail.setWeight(2.5);
+    detail.setProduct(product);
+
+    product.setDetails(detail);
+
+    entityManager.persist(product);
+    entityManager.persist(detail);
   }
 }
