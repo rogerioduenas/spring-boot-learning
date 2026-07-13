@@ -4,6 +4,8 @@ import com.rogerio.onetoone_strategies.SharedPK.Product;
 import com.rogerio.onetoone_strategies.SharedPK.ProductDetail;
 import com.rogerio.onetoone_strategies.foreignKey.Address;
 import com.rogerio.onetoone_strategies.foreignKey.User;
+import com.rogerio.onetoone_strategies.joinTable.Employee;
+import com.rogerio.onetoone_strategies.joinTable.WorkStation;
 import jakarta.persistence.EntityManager;
 import jakarta.transaction.Transactional;
 import org.springframework.boot.CommandLineRunner;
@@ -42,5 +44,15 @@ public class FlowTest implements CommandLineRunner {
 
     entityManager.persist(product);
     entityManager.persist(detail);
+
+    // Join Table
+    WorkStation workStation = new WorkStation();
+    Employee employee = new Employee();
+
+    employee.setWorkStation(workStation);
+    workStation.setEmployee(employee);
+
+    entityManager.persist(workStation);
+    entityManager.persist(employee);
   }
 }
