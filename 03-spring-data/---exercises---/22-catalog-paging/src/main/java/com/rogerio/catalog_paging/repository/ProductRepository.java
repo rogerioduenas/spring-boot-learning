@@ -1,0 +1,17 @@
+package com.rogerio.catalog_paging.repository;
+
+import com.rogerio.catalog_paging.model.Product;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
+
+public interface ProductRepository extends JpaRepository<Product, Long> {
+
+  @Query(
+      value = "SELECT p FROM Product p JOIN FETCH p.category WHERE p.category.id = :categoryId",
+      countQuery = "SELECT COUNT(p) FROM Product p WHERE p.category.id = :categoryId"
+  )
+  Page<Product> findAllByCategoryId(@Param("categoryId") Long categoryId, Pageable pageable);
+}
