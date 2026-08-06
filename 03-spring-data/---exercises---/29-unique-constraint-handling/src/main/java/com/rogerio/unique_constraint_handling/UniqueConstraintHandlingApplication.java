@@ -1,0 +1,13 @@
+package com.rogerio.unique_constraint_handling;
+
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+
+@SpringBootApplication
+public class UniqueConstraintHandlingApplication {
+
+	public static void main(String[] args) {
+		SpringApplication.run(UniqueConstraintHandlingApplication.class, args);
+	}
+
+}
