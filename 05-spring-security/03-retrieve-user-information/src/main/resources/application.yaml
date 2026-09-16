@@ -1,0 +1,7 @@
+spring:
+  application:
+    name: retrieve-user-information
+  security:
+    user:
+      name: rogerio
+      password: 123456
