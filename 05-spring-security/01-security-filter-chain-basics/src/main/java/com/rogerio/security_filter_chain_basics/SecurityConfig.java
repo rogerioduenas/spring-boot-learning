@@ -17,7 +17,7 @@ import org.springframework.security.web.SecurityFilterChain;
 
 @Configuration
 @EnableWebSecurity
-@EnableMethodSecurity(securedEnabled = true, jsr250Enabled = true)
+@EnableMethodSecurity
 public class SecurityConfig {
 
   @Bean
@@ -28,29 +28,33 @@ public class SecurityConfig {
   @Bean
   public UserDetailsService userDetailsService(PasswordEncoder passwordEncoder) {
     InMemoryUserDetailsManager manager = new InMemoryUserDetailsManager();
+
     manager.createUser(User.withUsername("user")
         .password(passwordEncoder.encode("userPass"))
         .roles("USER")
         .build());
+
     manager.createUser(User.withUsername("admin")
         .password(passwordEncoder.encode("adminPass"))
         .roles("USER", "ADMIN")
         .build());
+
     return manager;
   }
 
   @Bean
   public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
-    http.csrf(csrf -> csrf.disable())
-        .authorizeHttpRequests(authorizationManagerRequestMatcherRegistry ->
-            authorizationManagerRequestMatcherRegistry.requestMatchers(HttpMethod.DELETE).hasRole("ADMIN")
-                .requestMatchers("/admin/**").hasAnyRole("ADMIN")
-                .requestMatchers("/user/**").hasAnyRole("USER", "ADMIN")
-                .requestMatchers("/login/**").permitAll()
-                .anyRequest().authenticated())
+    return http
+        .csrf(csrf -> csrf.disable())
+        .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
+        .authorizeHttpRequests(auth -> auth
+            .requestMatchers(HttpMethod.DELETE).hasRole("ADMIN")
+            .requestMatchers("/admin/**").hasRole("ADMIN")
+            .requestMatchers("/user/**").hasAnyRole("USER", "ADMIN")
+            .requestMatchers("/login/**").permitAll()
+            .anyRequest().authenticated()
+        )
         .httpBasic(Customizer.withDefaults())
-        .sessionManagement(httpSecuritySessionManagementConfigurer -> httpSecuritySessionManagementConfigurer.sessionCreationPolicy(SessionCreationPolicy.STATELESS));
-
-    return http.build();
+        .build();
   }
 }
