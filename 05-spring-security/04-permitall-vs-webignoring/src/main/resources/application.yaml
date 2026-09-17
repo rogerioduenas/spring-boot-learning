@@ -1,0 +1,8 @@
+spring:
+  application:
+    name: permitall-vs-webignoring
+logging:
+  level:
+    org:
+      springframework:
+        security: TRACE
