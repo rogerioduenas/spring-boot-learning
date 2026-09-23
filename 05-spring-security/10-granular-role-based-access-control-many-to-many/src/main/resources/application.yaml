@@ -1,0 +1,3 @@
+spring:
+  application:
+    name: granular-role-based-access-control-many-to-many
