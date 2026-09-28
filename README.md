@@ -1,4 +1,4 @@
-# ☕ Spring Boot Backend Learning Journey
+# 🍃 Spring Boot Backend Learning Journey
 
 A repository focused on mastering the Spring ecosystem through a practical, progressive, and problem-oriented approach.
 
@@ -78,14 +78,14 @@ This approach allows every project to be executed and studied individually, simu
 
 | Module | Content | Status | Exercises |
 |--------|---------|--------|--------|
-| 00 | Hello World | ✅ Completed | 00 |
-| 01 | Spring Boot Fundamentals | ✅ Completed | 15 |
-| 01 → 12-mvc | Spring MVC & REST APIs | ✅ Completed | 15 |
-| 02 | Docker Environment | ✅ Completed | 00 |
-| 03 | Spring Data JPA | ✅ Completed | 30 |
-| 04 | Spring Testing | 🚧 In Progress | xx |
-| 05 | Spring Security | ⏳ Planned | xx |
-|  |  | Total Exercises | 60 |
+| 00 | [Hello World](00-Hello-World) | ✅ Completed | 00 |
+| 01 | [Spring Boot Fundamentals](01-introduction) | ✅ Completed | [15](01-introduction/---exercises---) |
+| 01 → 12-mvc | [Spring MVC & REST APIs](01-introduction/12-mvc) | ✅ Completed | [15](01-introduction/---exercises---) |
+| 02 | [Docker Environment](02-docker/hello-docker) | ✅ Completed | 00 |
+| 03 | [Spring Data JPA](03-spring-data) | ✅ Completed | [30](03-spring-data) |
+| 04 | [Spring Testing](04-spring-testing) | ✅ Completed | [10](04-spring-testing/exercises/src/main/java/com/rogerio) |
+| 05 | [Spring Security](05-spring-security) | ✅ Completed | 00 |
+|  |  | Total Exercises | 70 |
 
 ---
 
@@ -97,7 +97,7 @@ Instead of small isolated examples, this learning journey is composed of multipl
 
 ## 📊 Overview
 
-- ✅ 60 practical exercises across Spring Boot and Spring Data JPA modules
+- ✅ 70 practical exercises across Spring Boot and Spring Data JPA modules
 - ✅ Each exercise is an independent Spring Boot project
 - ✅ Each exercise contains its own technical `README.md`
 - ✅ Each exercise solves a specific backend problem
@@ -166,6 +166,42 @@ Depending on the topic, projects may contain:
 
 ---
 
+## Spring Testing
+
+- Spring Context Integration (`@SpringJUnitConfig`, `@SpringJUnitWebConfig`)
+- Mocking Beans in Spring Context (`@MockitoBean` / `@MockBean`)
+- `@Mock` vs `@MockBean` / `@MockitoBean` Differences
+- Dependency Injection in Tests (`@Autowired`)
+- Persistence Layer Testing (`@DataJpaTest`)
+- Transactional Rollback Strategies
+- Web Layer Slice Testing (`@WebMvcTest`)
+- Controller Request & Response Verification with `MockMvc`
+- JSON Serialization & Deserialization Testing
+- External HTTP API Mocking with `MockRestServiceServer`
+- Full Integration Testing (`@SpringBootTest`)
+- Random Port Testing (`WebEnvironment.RANDOM_PORT`)
+
+---
+
+## Spring Security
+
+- Modern `SecurityFilterChain` Bean Configuration
+- Custom Security Filters (`OncePerRequestFilter`)
+- Security Context & User Retrieval (`SecurityContextHolder`)
+- Public Endpoint Exposure (`permitAll()` vs `web.ignoring()`)
+- Custom `AuthenticationProvider` Implementation
+- Programmatic & Manual User Authentication
+- Global Security Exception Handling (`@RestControllerAdvice`)
+- Granted Authorities vs Roles Architecture
+- Role-Based Access Control (RBAC) & Fine-Grained Permissions
+- Method-Level Security (`@PreAuthorize`) & Custom Meta-Annotations
+- API Key Authentication Filters
+- Stateless JWT Architecture (Token Generation, Validation & Filters)
+- CSRF & Session Management (`SessionCreationPolicy.STATELESS`)
+- Password Hashing with `BCryptPasswordEncoder` (HashGuard)
+
+---
+
 # 🚀 How to Run
 
 Each module was designed to be studied independently.
@@ -182,18 +218,33 @@ Starting from the **Spring Data JPA module**, each project provides its own Dock
 - Spring Boot
 - Spring MVC
 - Spring Data JPA
+- Spring Security
+- Spring AOP
 - Hibernate
 - Bean Validation
-- Spring AOP
-- Docker
-- PostgreSQL
+- JUnit 5 (Jupiter Engine)
+- Mockito 5
+- Spring Testing (`@SpringBootTest`, `@WebMvcTest`, `@DataJpaTest`, `MockMvc`)
+- JWT (JSON Web Tokens)
+- BCrypt
+- Docker & Docker Compose
+- PostgreSQL & MySQL
 - Maven
 - IntelliJ IDEA
 
-> This repository will continue evolving with the addition of **Spring Testing** and **Spring Security**, completing the learning journey through the Spring ecosystem.
 
 ---
 
-# 🎯 Goal
+## 🎯 Next Milestone: Production-Grade Capstone Application
 
-Build production-oriented backend development skills by combining framework knowledge, database expertise, performance optimization, and clean application design.
+With the core Spring Boot ecosystem established, the next milestone in this self-directed journey is the architecture and development of an **End-to-End Production-Grade Backend Application**.
+
+This upcoming repository will integrate every skill mastered throughout these independent learning modules into a single, real-world domain solution:
+
+- **Complete RESTful Service:** Full domain modeling with Spring Boot 3, Spring Data JPA, and Spring Security with JWT.
+- **Containerized Infrastructure:** Multi-container setup using Docker & Docker Compose for isolated application and database runtime.
+- **Performance & Data Integrity:** Query optimization (N+1 query prevention, `JOIN FETCH`, projections) and transactional consistency.
+- **Automated Quality Assurance:** Comprehensive test suite featuring unit and integration slice tests (`@WebMvcTest`, `@DataJpaTest`, `@SpringBootTest`).
+- **Clean Architecture & Best Practices:** Layered design, global exception handling, DTO mapping, and bean validations.
+
+> 🛠️ *This capstone project is currently under architectural design and initial implementation.*
